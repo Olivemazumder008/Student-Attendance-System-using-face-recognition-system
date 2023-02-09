@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Change Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+       
+*{
+	margin:0;
+	padding:0;
+	font-family:arial;
+}
+body{
+	background:url('kk.jpg')no-repeat;
+	background-size:cover;
+	position:absolute;
+	
+}
+.box{
+width:800px;
+height:700px;
+border:2px solid black;
+margin-top:2%;
+margin-left:20%;
+border-radius:13px;
+text-align:center;
+background-color:white;
+opacity:.7;
+
+}
+.pass name{
+font-size:20px;
+color:blue;
+font-weight:600px;
+}
+        input {
+           
+            padding: 5px;
+            border: 4px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+			color:blue;
+			
+        }
+
+        
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+       
+        .pass {
+            background-color: #f1f1f1;
+            padding: 20px;
+        }
+
+        
+        #message {
+            display: none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+
+        
+        .valid {
+            color: green;
+        }
+
+        .valid:before {
+            position: relative;
+            left: -35px;
+            content: "✔";
+        }
+
+       
+        .invalid {
+            color: red;
+        }
+
+        .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "✖";
+        }
+		.img file{
+		background-color:blue;
+		}
+		
+		.select-style {
+    border: 5px solid #ccc;
+    width: 250px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+	border-radius: 25px;
+}
+
+.select-style select {
+    padding: 6px 8px;
+    width: 500%;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    background: none;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+    </style>
+
+</head>
+
+<body>
+<div class="box">
+    <div class="pass">
+        <form>
+		<label for="name">Name</label>
+		<input type="text" name="">
+            <label for="psw">Password</label>
+			
+            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                required><br><br>
+            <div id="message">
+                <h3>Password must contain the following:</h3>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
+            <label for="cpsw">Confirm Password</label>
+            <input type="password" id="cpsw" name="cpsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                required>
+            <label for="ppsw">Previous Password</label>
+            <input type="password" id="ppsw" name="ppsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><br><br>
+<label for="email">Email</label>
+<input type="text" name="">
+<label for="phn">Phone Number</label>
+<input type="text" name="">
+<p>Designation</p>
+<center>
+<div class="select-style">
+  <select>
+    <option value="professor">Professor</option>
+    <option value="assosiate Professor">Assosiate Professor</option>
+    <option value="assistant Professor">Assistant Professor</option>
+    <option value="lec">Lecturer</option>
+  </select>
+</div>
+</center>
+<div class="img">
+				<h5>Please Upload a your picture</h5>
+				
+                <img style="width: 150px; height: 120px;" src="6.jpg" ><br>
+                <input type="file" name="image"><br>
+                <input type="submit" value="Upload Image" required="" captured>
+</div>
+
+            <input type="submit" value="Save">
+            <button type="button" onclick="location.href = 'teachers.html';">Go back to profile
+            </button>
+        </form>
+
+    </div>
+	</div>
+    <script>
+        var myInput = document.getElementById("psw");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+
+        //Password confirmation 
+        var password = document.getElementById("psw"),
+            confirm_password = document.getElementById("cpsw");
+
+        function validatePassword() {
+            if (password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
+
+        // When the user clicks on the password field, show the message box
+        myInput.onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+        // When the user clicks outside of the password field, hide the message box
+        myInput.onblur = function () {
+            document.getElementById("message").style.display = "none";
+        }
+
+        // When the user starts to type something inside the password field
+        myInput.onkeyup = function () {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            if (myInput.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
